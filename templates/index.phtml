@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Marvel</title>
+      
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <style type="text/css">
+            
+        body {
+          padding-top: 54px;
+        }
+
+        @media (min-width: 992px) {
+          body {
+            padding-top: 56px;
+          }
+        }
+
+        .portfolio-item {
+          margin-bottom: 30px;
+        }
+
+        .pagination {
+          margin-bottom: 30px;
+        }
+
+        [v-cloak] {
+            display: none;
+          }
+
+        #loader { text-align: center; }  
+        </style>
+
+    </head>
+    <body>
+       <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading -->
+     
+
+      <div id="app"  v-cloak>
+
+            <div id="loader"  v-show="!show">
+                <svg class="lds-blocks" width="200px"  height="200px"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;"><rect x="19" y="19" width="20" height="20" fill="#28292f">
+              <animate attributeName="fill" values="#0a0a0a;#28292f;#28292f" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0s" calcMode="discrete"></animate>
+            </rect><rect x="40" y="19" width="20" height="20" fill="#28292f">
+              <animate attributeName="fill" values="#0a0a0a;#28292f;#28292f" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.125s" calcMode="discrete"></animate>
+            </rect><rect x="61" y="19" width="20" height="20" fill="#28292f">
+              <animate attributeName="fill" values="#0a0a0a;#28292f;#28292f" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.25s" calcMode="discrete"></animate>
+            </rect><rect x="19" y="40" width="20" height="20" fill="#28292f">
+              <animate attributeName="fill" values="#0a0a0a;#28292f;#28292f" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.875s" calcMode="discrete"></animate>
+            </rect><rect x="61" y="40" width="20" height="20" fill="#28292f">
+              <animate attributeName="fill" values="#0a0a0a;#28292f;#28292f" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.375s" calcMode="discrete"></animate>
+            </rect><rect x="19" y="61" width="20" height="20" fill="#28292f">
+              <animate attributeName="fill" values="#0a0a0a;#28292f;#28292f" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.75s" calcMode="discrete"></animate>
+            </rect><rect x="40" y="61" width="20" height="20" fill="#28292f">
+              <animate attributeName="fill" values="#0a0a0a;#28292f;#28292f" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.625s" calcMode="discrete"></animate>
+            </rect><rect x="61" y="61" width="20" height="20" fill="#28292f">
+              <animate attributeName="fill" values="#0a0a0a;#28292f;#28292f" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.5s" calcMode="discrete"></animate>
+            </rect></svg>
+            </div>
+
+            <h1 class="my-4" v-show="show">MARVEL</h1>
+           <div class="row" v-show="show">
+
+            <div class="col-lg-4 col-sm-6 portfolio-item" v-for="item in items">
+              <div class="card h-100">
+                <a href="#" v-on:click="details(item, $event)"><img class="card-img-top" v-bind:src="avatar(item)" alt="item.name"></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#" v-on:click="details(item, $event)">{{item.name}}</a>
+                  </h4>
+                  <div v-show="item.clicked">
+                    <em>Apparition : {{item.comics.available}}</em><br>
+                    <em>dans : <span v-for="comic in truncateComics(item.comics.items)">{{comic.name}}</span></em>
+                    <p>
+                      {{item.description}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.row -->
+
+          <!-- Pagination -->
+          <ul class="pagination justify-content-center" style="display: none;">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+    
+
+      </div>
+
+ 
+    </div>
+    <!-- /.container -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
