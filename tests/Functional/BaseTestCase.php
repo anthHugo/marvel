@@ -22,6 +22,12 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
      */
     protected $withMiddleware = true;
 
+    public function __construct()
+    {
+        $dotenv = new \Dotenv\Dotenv(__DIR__ . '/../../');
+        $dotenv->load();
+    }
+
     /**
      * Process the application given a request method and URI
      *

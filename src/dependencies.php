@@ -18,8 +18,7 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
-$container['guzzle'] = function($c) {
-
+$container['marvel'] = function($c) {
 	$settings = $c->get('settings')['marvel'];
 
     $client = new \GuzzleHttp\Client([

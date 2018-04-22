@@ -12,10 +12,20 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 
 $app->get('/api/list', function (Request $request, Response $response, array $args) {
 
-	$res = $this->guzzle->get('characters',  ['query' => array_merge(
-        $this->guzzle->getConfig('query'),
-        ['limit' => 20, 'offset' => 100]
-    )]);
+	$offset = 99;
+	$limit = 20;
 
+	if($request->getParam('page') != null){
+		if($request->getParam('page') > 1){
+			$offset = ($request->getParam('page') * $limit) - 1;
+		} else {
+			$offset = 0;
+		}
+	}
+
+	$query = array_merge($this->marvel->getConfig('query'), ['limit' => $limit, 'offset' =>  $offset]);
+
+	$res = $this->marvel->get('characters', ['query' => $query]);
+	
 	return $response->withJson(json_decode($res->getBody()->getContents())->data);
 });

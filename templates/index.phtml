@@ -27,7 +27,7 @@
 
         [v-cloak] {
             display: none;
-          }
+        }
 
         #loader { text-align: center; }  
         </style>
@@ -40,7 +40,29 @@
       <!-- Page Heading -->
      
 
-      <div id="app"  v-cloak>
+      <div id="app" v-cloak>
+
+            <h1 class="my-4">Personnages MARVEL</h1>
+
+            
+             <!-- Pagination -->
+            <ul class="pagination justify-content-center" v-show="init">
+              <li class="page-item">
+                <button class="page-link"  aria-label="Previous" v-on:click="prev">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Précédent</span>
+                </button>
+              </li>
+              <li class="page-item" style="margin: 5px 10px;"> 
+                 <strong>{{page}} / {{totalPage}}</strong>
+              </li>
+              <li class="page-item">
+                <button class="page-link" aria-label="Next" v-on:click="next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Suivant</span>
+                </button>
+              </li>
+            </ul> 
 
             <div id="loader"  v-show="!show">
                 <svg class="lds-blocks" width="200px"  height="200px"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;"><rect x="19" y="19" width="20" height="20" fill="#28292f">
@@ -62,7 +84,6 @@
             </rect></svg>
             </div>
 
-            <h1 class="my-4" v-show="show">MARVEL</h1>
            <div class="row" v-show="show">
 
             <div class="col-lg-4 col-sm-6 portfolio-item" v-for="item in items">
@@ -73,8 +94,9 @@
                     <a href="#" v-on:click="details(item, $event)">{{item.name}}</a>
                   </h4>
                   <div v-show="item.clicked">
-                    <em>Apparition : {{item.comics.available}}</em><br>
-                    <em>dans : <span v-for="comic in truncateComics(item.comics.items)">{{comic.name}}</span></em>
+                    <em>Apparition dans les comics : <span class="badge badge-info">{{item.comics.available}}</span></em><br>
+                    <em>Comics : <span class="badge" v-for="comic in truncateComics(item.comics.items)">{{comic.name}}</span></em>
+                    <hr v-show="item.description">
                     <p>
                       {{item.description}}
                     </p>
@@ -86,30 +108,23 @@
           <!-- /.row -->
 
           <!-- Pagination -->
-          <ul class="pagination justify-content-center" style="display: none;">
+          <ul class="pagination justify-content-center" v-show="init">
             <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+              <button class="page-link"  aria-label="Previous" v-on:click="prev">
                 <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
+                <span class="sr-only">Précédent</span>
+              </button>
+            </li>
+            <li class="page-item" style="margin: 5px 10px;"> 
+               <strong>{{page}} / {{totalPage}}</strong>
             </li>
             <li class="page-item">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+              <button class="page-link" aria-label="Next" v-on:click="next">
                 <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
+                <span class="sr-only">Suivant</span>
+              </button>
             </li>
-          </ul>
-    
+          </ul> 
 
       </div>
 
