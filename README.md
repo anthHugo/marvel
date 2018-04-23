@@ -1,23 +1,42 @@
-# Personnages Marvel
+# Présentation des personnages de Marvel
+Présentation des personnages de marvel avec l'utilisation de l'API REST. 	
+- Serveur slim framework
+- Client Vuejs
+- Affichage de 20 personnages à partir du 100ème
+- Mise en place d'un système de pagination
 
-## Installer l'application
+## Pré-requis
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+- PHP >= 5.5
+- Composer
+- GIT
+- Créer un compte sur le site [https://developer.marvel.com/](https://developer.marvel.com/) puis récupérer les clefs public et privé à cette adresse [https://developer.marvel.com/account](https://developer.marvel.com/account)
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+## Installation
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+Télécharger ou cloner le dépôt 
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
+	git clone git@github.com:anthHugo/marvel.git && cd marvel
 
-To run the application in development, you can run these commands 
+Modifier le fichier `conf.env` en `.env`  puis affecter aux variables `MARVEL_KEY`  `PRIVATE_KEY` respectivement votre clé public et privé
 
-	cd [my-app-name]
+Installer les dépendances
+
+	php composer.phar install
+
+Pour démarrer l'application en développement, lancer cette commande. 
+
 	php composer.phar start
+Ouvrir votre navigateur à l'adresse [http://localhost:8080/](http://localhost:8080/)
 
-Run this command in the application directory to run the test suite
+Lancer cette commande pour lancer les tests
 
 	php composer.phar test
 
-That's it! Now go build something cool.
+
+## Todo 
+
+ - Ajout d'un système de favoris avec persistance
+ -  Compiler le javascript lors du premier appel de la page
+ - Importer les personnages au sein d'une base de données SQL ou NoSQL en fonction des besoins
+ - Prévoir une mise en cache des données
